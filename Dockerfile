@@ -14,7 +14,7 @@ COPY notification-service notification-service
 
 # Собираем сервис (замени :user-service на имя своего модуля)
 RUN chmod +x gradlew
-RUN ./gradlew :notification-service:build -x test --no-daemon
+RUN ./gradlew build -x test --no-daemon
 
 # Stage 2: Запуск
 FROM eclipse-temurin:21-jre-alpine
