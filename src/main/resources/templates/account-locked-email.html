@@ -3,8 +3,10 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="x-apple-disable-message-reformatting">
     <title>Уведомление о безопасности</title>
     <style>
+        /* Базовые сбросы */
         body {
             margin: 0; padding: 0; width: 100% !important;
             -webkit-text-size-adjust: 100%; -ms-text-size-adjust: 100%;
@@ -28,24 +30,56 @@
         }
 
         .alert-block {
-            background-color: #FFF1F2; /* Светло-красный фон для предупреждения */
-            border-left: 4px solid #F43F5E; /* Красная линия */
+            background-color: #FFF1F2;
+            border-left: 4px solid #F43F5E;
             padding: 20px;
             margin: 24px 0;
             border-radius: 4px;
+        }
+
+        /* Адаптация под мобильные устройства */
+        @media only screen and (max-width: 620px) {
+            .wrapper-table {
+                width: 100% !important;
+            }
+            .main-card {
+                width: 95% !important;
+                border-radius: 4px !important;
+            }
+            .content-cell {
+                padding: 32px 20px !important;
+            }
+            .mobile-center {
+                text-align: center !important;
+            }
+            .mobile-center img {
+                margin: 0 auto !important;
+            }
+        }
+
+        /* Поддержка Dark Mode */
+        @media (prefers-color-scheme: dark) {
+            body { background-color: #0F172A !important; }
+            .main-card { background-color: #1E293B !important; }
+            h1 { color: #F8FAFC !important; }
+            p { color: #CBD5E1 !important; }
+            .alert-block { background-color: #441111 !important; border-left-color: #FB7185 !important; }
+            .alert-block p { color: #FDA4AF !important; }
+            .content-cell { color: #CBD5E1 !important; }
         }
     </style>
 </head>
 <body>
     <center>
-        <table role="presentation" border="0" cellpadding="0" cellspacing="0" width="100%" style="background-color: #F8FAFC; padding: 40px 0;">
+        <table role="presentation" border="0" cellpadding="0" cellspacing="0" width="100%" style="background-color: #F8FAFC; padding: 20px 0;">
             <tr>
                 <td align="center">
-                    <table class="main-card" role="presentation" border="0" cellpadding="0" cellspacing="0" width="600" style="width: 600px; max-width: 600px;">
+
+                    <table class="main-card wrapper-table" role="presentation" border="0" cellpadding="0" cellspacing="0" width="600" style="width: 600px; max-width: 600px;">
                         <tr>
                             <td class="content-cell" align="left">
 
-                                <div style="margin-bottom: 32px;">
+                                <div style="margin-bottom: 32px;" class="mobile-center">
                                     <img src="https://i.imgur.com/huFpdnM.png" alt="Ucust" width="110" style="display: block; border: 0;">
                                 </div>
 
@@ -89,9 +123,9 @@
                         </tr>
                     </table>
 
-                    <table role="presentation" border="0" cellpadding="0" cellspacing="0" width="600" style="margin-top: 24px;">
+                    <table class="wrapper-table" role="presentation" border="0" cellpadding="0" cellspacing="0" width="600" style="margin-top: 24px;">
                         <tr>
-                            <td align="center" style="font-size: 12px; color: #94A3B8;">
+                            <td align="center" style="font-size: 12px; color: #94A3B8; padding: 0 20px;">
                                 © 2026 UCust Platform. Это системное уведомление.
                             </td>
                         </tr>
