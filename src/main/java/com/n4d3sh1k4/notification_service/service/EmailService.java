@@ -27,7 +27,7 @@ public class EmailService {
             context.setVariable("supportEmail", "team@reshala.n4d3sh1k4.site");
             context.setVariable("expiryMinutes", 15);
             context.setVariable("username", username);
-            context.setVariable("activationUrl", "http://localhost:8180/api/v0/auth/confirm?token=" + token);
+            context.setVariable("activationUrl", "https://api.reshala.n4d3sh1k4.site/api/v0/auth/confirm?token=" + token);
             String htmlContent = templateEngine.process("account-activate-email", context);
             sendHtmlEmail(to, "Подтверждение регистрации", htmlContent);
         } else {
@@ -42,7 +42,7 @@ public class EmailService {
     public void sendResetPasswordEmail(String to, String token) {
         Context context = new Context();
         context.setVariable("supportEmail", "team@reshala.n4d3sh1k4.site");
-        context.setVariable("activationUrl", "http://localhost:8180/reset-password?token=" + token);
+        context.setVariable("activationUrl", "https://api.reshala.n4d3sh1k4.site/reset-password?token=" + token);
 
         String htmlContent = templateEngine.process("password-reset-email", context);
 
