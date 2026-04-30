@@ -1,7 +1,7 @@
 services:
   notification-service:
     image: ghcr.io/${IMAGE_NAME}:latest
-    container_name: notification-service
+    container_name: notification-service-reshala
     ports:
       - "8182:8182"
     environment:
