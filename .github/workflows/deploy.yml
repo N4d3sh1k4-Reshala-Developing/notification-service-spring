@@ -7,7 +7,7 @@ on:
 env:
   REGISTRY: ghcr.io
   PROJECT_ROOT: "/home/${{ secrets.SERVER_USER }}/reshala-project"
-  SERVICE_NAME: "notification-service"
+  SERVICE_NAME: "notification-service-reshala"
 
 jobs:
   build-and-push:
