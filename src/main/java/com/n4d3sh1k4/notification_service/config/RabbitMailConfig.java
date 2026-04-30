@@ -47,17 +47,14 @@ public class RabbitMailConfig {
     }
 
     @Bean
-    public JacksonJsonMessageConverter messageConverter() { // Используем новый класс без "2"
+    public JacksonJsonMessageConverter messageConverter() {
         JacksonJsonMessageConverter converter = new JacksonJsonMessageConverter();
 
         DefaultJacksonJavaTypeMapper typeMapper = new DefaultJacksonJavaTypeMapper();
-        // Доверяем всем пакетам для гибкости микросервисов
         typeMapper.setTrustedPackages("*");
 
-        // Настраиваем нашу "карту соответствия"
         Map<String, Class<?>> idClassMapping = new HashMap<>();
 
-        // Мапим сообщения из Security на локальные события Notification
         idClassMapping.put("com.n4d3sh1k4.security_service.dto.event.PasswordResetMessage", PasswordResetMessage.class);
         idClassMapping.put("com.n4d3sh1k4.security_service.dto.event.NotificationEmailMessage", UserCreatedMessage.class);
         idClassMapping.put("com.n4d3sh1k4.security_service.dto.event.AccountLockedMessage", AccountLockedMessage.class);

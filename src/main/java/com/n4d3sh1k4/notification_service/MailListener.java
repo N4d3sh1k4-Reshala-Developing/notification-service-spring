@@ -21,7 +21,7 @@ public class MailListener {
 
     @RabbitHandler
     public void handleRegistration(UserCreatedMessage event) {
-        log.info("Processing registration mail for: {}", event.email());
+        log.info("Processing registration mail for: {}, {}", event.email(), event.username());
         executeSafe(() -> emailService.sendRegistrationEmail(event.email(), event.username(), event.token()));
     }
 

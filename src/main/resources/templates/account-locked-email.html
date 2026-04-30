@@ -17,7 +17,7 @@
 
         .main-card {
             background-color: #ffffff;
-            border-top: 4px solid #00A3E0;
+            border-top: 4px solid #152A68;
             border-radius: 8px;
             box-shadow: 0 4px 6px rgba(0, 0, 0, 0.05);
         }
@@ -56,22 +56,11 @@
                 margin: 0 auto !important;
             }
         }
-
-        /* Поддержка Dark Mode */
-        @media (prefers-color-scheme: dark) {
-            body { background-color: #0F172A !important; }
-            .main-card { background-color: #1E293B !important; }
-            h1 { color: #F8FAFC !important; }
-            p { color: #CBD5E1 !important; }
-            .alert-block { background-color: #441111 !important; border-left-color: #FB7185 !important; }
-            .alert-block p { color: #FDA4AF !important; }
-            .content-cell { color: #CBD5E1 !important; }
-        }
     </style>
 </head>
-<body>
-    <center>
-        <table role="presentation" border="0" cellpadding="0" cellspacing="0" width="100%" style="background-color: #F8FAFC; padding: 20px 0;">
+<body width="100%" style="margin: 0; padding: 0 !important; mso-line-height-rule: exactly; background-color: #F8FAFC;">
+    <center style="width: 100%; background-color: #F8FAFC;" class="outer-bg">
+        <table role="presentation" border="0" cellpadding="0" cellspacing="0" width="100%" style="background-color: #F8FAFC; padding: 20px 0;" class="outer-bg">
             <tr>
                 <td align="center">
 
@@ -80,7 +69,9 @@
                             <td class="content-cell" align="left">
 
                                 <div style="margin-bottom: 32px;" class="mobile-center">
-                                    <img src="https://i.imgur.com/huFpdnM.png" alt="Ucust" width="110" style="display: block; border: 0;">
+                                    <div class="logo-container" style="display: inline-block;">
+                                        <img src="https://i.imgur.com/MLXnY6Q.png" alt="Reshala" width="220" style="display: block; border: 0; max-width: 100%; height: auto;">
+                                    </div>
                                 </div>
 
                                 <h1 style="font-size: 22px; color: #1E293B; margin: 0 0 16px 0; font-weight: 700;">
@@ -88,7 +79,7 @@
                                 </h1>
 
                                 <p style="font-size: 16px; margin: 0 0 16px 0;">
-                                    Здравствуйте! Мы зафиксировали подозрительную активность в вашем аккаунте <strong>UCust</strong>.
+                                    Здравствуйте! Мы зафиксировали подозрительную активность в вашем аккаунте <strong>Reshala</strong>.
                                 </p>
 
                                 <p style="font-size: 16px; margin: 0;">
@@ -112,11 +103,11 @@
 
                                 <p style="font-size: 14px; color: #475569; margin: 0 0 8px 0;">
                                     Нужна помощь? Свяжитесь с нами:
-                                    <a th:href="'mailto:' + ${supportEmail}" th:text="${supportEmail}" style="color: #00A3E0; text-decoration: none; font-weight: 500;">support@ucust.com</a>
+                                    <a th:href="'mailto:' + ${supportEmail}" th:text="${supportEmail}" style="color: #152A68; text-decoration: none; font-weight: 500;">team@reshala.n4d3sh1k4.site</a>
                                 </p>
 
                                 <p style="font-size: 15px; font-weight: 700; color: #1E293B; margin: 0;">
-                                    С уважением,<br>Команда UCust
+                                    С уважением,<br>Команда Reshala
                                 </p>
 
                             </td>
@@ -126,7 +117,7 @@
                     <table class="wrapper-table" role="presentation" border="0" cellpadding="0" cellspacing="0" width="600" style="margin-top: 24px;">
                         <tr>
                             <td align="center" style="font-size: 12px; color: #94A3B8; padding: 0 20px;">
-                                © 2026 UCust Platform. Это системное уведомление.
+                                © 2026 Reshala. Это системное уведомление.
                             </td>
                         </tr>
                     </table>

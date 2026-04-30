@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Подтверждение регистрации</title>
+    <title>Подтверждение регистрации | Reshala</title>
     <style>
         /* Базовые сбросы */
         body {
@@ -12,56 +12,51 @@
             width: 100% !important;
             -webkit-text-size-adjust: 100%;
             -ms-text-size-adjust: 100%;
-            background-color: #F8FAFC;
+            background-color: #F4F7FA;
         }
         img { border: 0; outline: none; text-decoration: none; -ms-interpolation-mode: bicubic; }
         table { border-collapse: collapse !important; }
 
         .main-card {
             background-color: #ffffff;
-            border-top: 4px solid #00A3E0;
-            border-radius: 8px;
-            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.05);
+            border-top: 5px solid #152A68; /* Цвет из логотипа */
+            border-radius: 12px;
+            box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.05);
         }
 
         .content-cell {
             padding: 48px 40px;
-            font-family: 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
+            font-family: 'Segoe UI', system-ui, -apple-system, sans-serif;
             color: #334155;
             line-height: 1.6;
         }
 
         .btn-link:hover {
-            background-color: #0082B3 !important;
+            background-color: #1e3a8a !important;
+            box-shadow: 0 4px 12px rgba(21, 42, 104, 0.3) !important;
         }
 
-        /* Адаптация под мобильные устройства */
+        .info-block {
+            background-color: #F8FAFC;
+            border-left: 4px solid #8B95B3; /* Цвет 'alfa' из логотипа */
+            padding: 20px;
+            margin: 24px 0 32px 0;
+            border-radius: 6px;
+        }
+
+        /* Адаптация под мобильные */
         @media only screen and (max-width: 620px) {
-            .wrapper-table {
-                width: 100% !important;
-            }
-            .main-card {
-                width: 95% !important; /* Небольшие отступы по бокам на мобильных */
-                border-radius: 0 !important; /* Убираем скругление, если письмо на весь экран */
-            }
-            .content-cell {
-                padding: 32px 20px !important; /* Уменьшаем внутренние отступы */
-            }
-            .mobile-full-width {
-                width: 100% !important;
-                display: block !important;
-            }
-            .btn-link {
-                display: block !important; /* Кнопка на всю ширину для удобного нажатия пальцем */
-                text-align: center !important;
-                padding: 16px 0 !important;
-            }
+            .wrapper-table { width: 100% !important; }
+            .main-card { width: 95% !important; border-radius: 8px !important; }
+            .content-cell { padding: 32px 20px !important; }
+            .mobile-full-width { width: 100% !important; display: block !important; }
+            .btn-link { display: block !important; padding: 16px 0 !important; }
         }
     </style>
 </head>
-<body>
-    <center>
-        <table role="presentation" border="0" cellpadding="0" cellspacing="0" width="100%" style="background-color: #F8FAFC; padding: 20px 0;">
+<body width="100%" style="margin: 0; padding: 0 !important; mso-line-height-rule: exactly; background-color: #F4F7FA;">
+    <center style="width: 100%; background-color: #F4F7FA;" class="outer-bg">
+        <table role="presentation" border="0" cellpadding="0" cellspacing="0" width="100%" style="padding: 40px 0;" class="outer-bg">
             <tr>
                 <td align="center">
 
@@ -70,21 +65,23 @@
                             <td class="content-cell" align="left">
 
                                 <div style="margin-bottom: 32px;">
-                                    <img src="https://i.imgur.com/huFpdnM.png" alt="Ucust" width="110" style="display: block; border: 0;">
+                                    <div class="logo-container">
+                                        <img src="https://i.imgur.com/MLXnY6Q.png" alt="Reshala" width="180" style="display: block; border: 0; height: auto;">
+                                    </div>
                                 </div>
 
-                                <h1 style="font-size: 24px; color: #1E293B; margin: 0 0 16px 0; font-weight: 700;">
-                                    Здравствуйте, <span th:text="${username}" style="color: #00A3E0;">пользователь</span>!
+                                <h1 style="font-size: 26px; color: #1E293B; margin: 0 0 16px 0; font-weight: 700; letter-spacing: -0.5px;">
+                                    Добро пожаловать в мир решений!
                                 </h1>
 
                                 <p style="font-size: 16px; margin: 0 0 24px 0;">
-                                    Рады видеть вас в <strong>UCust</strong>! Мы создали платформу, чтобы сделать вашу работу эффективнее.
-                                    Для активации вашего профиля, пожалуйста, нажмите на кнопку ниже:
+                                    Здравствуйте, <span class="username" th:text="${username}" style="color: #152A68; font-weight: 600;">пользователь</span>. <br>
+                                    Рады видеть вас в <strong>Reshala</strong>! Теперь любая задача — от простой алгебры до сложного матанализа — решается в одно фото.
                                 </p>
 
                                 <table class="mobile-full-width" border="0" cellspacing="0" cellpadding="0" style="margin-bottom: 32px;">
                                     <tr>
-                                        <td align="center" bgcolor="#00A3E0" style="border-radius: 6px;">
+                                        <td align="center" bgcolor="#152A68" style="border-radius: 8px;">
                                             <a th:href="${activationUrl}"
                                                target="_blank"
                                                class="btn-link"
@@ -92,33 +89,39 @@
                                                       font-weight: 600;
                                                       color: #ffffff;
                                                       text-decoration: none;
-                                                      padding: 14px 32px;
-                                                      border-radius: 6px;
+                                                      padding: 16px 40px;
+                                                      border-radius: 8px;
                                                       display: inline-block;
-                                                      letter-spacing: 0.5px;">
-                                                Активировать аккаунт
+                                                      transition: all 0.3s ease;">
+                                                Подтвердить регистрацию
                                             </a>
                                         </td>
                                     </tr>
                                 </table>
 
-                                <div style="background-color: #F1F5F9; border-left: 4px solid #CBD5E1; padding: 16px; margin-bottom: 32px;">
-                                    <p style="font-size: 13px; color: #64748B; margin: 0;">
-                                        ⚠️ Ссылка действительна в течение <span th:text="${expiryMinutes}" style="font-weight: bold;">15</span> минут.<br>
-                                        Если вы не регистрировались на нашем сайте, просто удалите это письмо.
+                                <div class="info-block">
+                                    <p style="font-size: 14px; color: #475569; margin: 0;">
+                                        <strong>Обратите внимание:</strong> Ссылка на активацию действительна в течение <span th:text="${expiryMinutes}" style="color: #152A68; font-weight: bold;">15</span> минут. <br>
+                                        <span style="font-size: 12px; margin-top: 8px; display: block; opacity: 0.8;">Если вы не оставляли заявку, просто проигнорируйте это письмо.</span>
                                     </p>
                                 </div>
 
                                 <hr style="border: 0; border-top: 1px solid #E2E8F0; margin: 0 0 24px 0;">
 
-                                <p style="font-size: 14px; color: #475569; margin: 0 0 8px 0;">
-                                    Есть вопросы? Мы всегда на связи:
-                                    <a th:href="'mailto:' + ${supportEmail}" th:text="${supportEmail}" style="color: #00A3E0; text-decoration: none; font-weight: 500;">support@ucust.com</a>
+                                <p style="font-size: 14px; color: #64748B; margin: 0 0 24px 0;">
+                                    Нужна помощь? Напишите нам:
+                                    <a th:href="'mailto:' + ${supportEmail}" th:text="${supportEmail}" style="color: #152A68; text-decoration: none; font-weight: 600;">team@reshala.n4d3sh1k4.site</a>
                                 </p>
 
-                                <p style="font-size: 15px; font-weight: 700; color: #1E293B; margin: 0;">
-                                    С уважением,<br>Команда UCust
-                                </p>
+                                <table border="0" cellpadding="0" cellspacing="0">
+                                    <tr>
+                                        <td style="border-left: 3px solid #8B95B3; padding-left: 15px;">
+                                            <p style="font-size: 15px; font-weight: 700; color: #1E293B; margin: 0;">
+                                                С уважением,<br>Команда Reshala <span style="color: #8B95B3; font-weight: 400;">alfa</span>
+                                            </p>
+                                        </td>
+                                    </tr>
+                                </table>
 
                             </td>
                         </tr>
@@ -126,8 +129,11 @@
 
                     <table class="wrapper-table" role="presentation" border="0" cellpadding="0" cellspacing="0" width="600" style="margin-top: 24px;">
                         <tr>
-                            <td align="center" style="font-size: 12px; color: #94A3B8; padding: 0 20px;">
-                                © 2026 UCust Platform. Все права защищены.
+                            <td align="center" class="footer-text" style="font-size: 12px; color: #94A3B8; padding: 0 20px;">
+                                © 2026 Reshala App. Математика — это просто. <br>
+                                <div style="margin-top: 8px;">
+                                    Вы получили это письмо, так как зарегистрировались в сервисе Reshala.
+                                </div>
                             </td>
                         </tr>
                     </table>
