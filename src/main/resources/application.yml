@@ -7,11 +7,11 @@ spring:
       enabled: false
 
   rabbitmq:
-    host: localhost
-    port: 5672
-    username: system-user
-    password: systempass
-    virtual-host: system-service
+    host: ${RABBIT_HOST}
+    port: ${RABBIT_PORT}
+    username: ${RABBIT_USERNAME}
+    password: ${RABBIT_PASSWORD}
+    virtual-host: ${RABBIT_VHOST}
     template:
       retry:
         enabled: true
@@ -19,10 +19,10 @@ spring:
         max-attempts: 3
 
   mail:
-    host: smtp.resend.com
-    port: 465
-    username: resend
-    password: re_f3EzGhUX_6ortzRkxM6VSDfSSHSZAxg2L
+    host: ${MAIL_HOST}
+    port: ${MAIL_PORT}
+    username: ${MAIL_USERNAME}
+    password: ${MAIL_PASSWORD}
     properties:
       mail:
         smtp:
@@ -38,7 +38,7 @@ server:
 eureka:
   client:
     service-url:
-      defaultZone: http://eureka-user:zvBGTYdMUJV7mpRs35YA@localhost:8761/eureka/
+      defaultZone: http://${EUREKA_USER}:${EUREKA_PASSWORD}@${EUREKA_HOST:localhost}:8761/eureka/
     register-with-eureka: true
     fetch-registry: true
   instance:
