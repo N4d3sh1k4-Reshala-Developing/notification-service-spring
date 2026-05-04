@@ -63,8 +63,16 @@ jobs:
             
             # Заполняем переменные окружения
             echo "IMAGE_NAME=${{ env.IMAGE_NAME }}" > .env
-            echo "RMQ_USER=${{ secrets.RMQ_USER }}" >> .env
-            echo "RMQ_PASS=${{ secrets.RMQ_PASS }}" >> .env
+          
+            echo "RMQ_HOST=${{ secrets.RMQ_HOST }}" >> .env
+            echo "RMQ_PORT=${{ secrets.RMQ_PORT }}" >> .env
+            echo "RMQ_USERNAME=${{ secrets.RMQ_USERNAME }}" >> .env
+            echo "RMQ_PASSWORD=${{ secrets.RMQ_PASSWORD }}" >> .env
+            echo "RMQ_VHOST=${{ secrets.RMQ_VHOST }}" >> .env
+          
+            echo "MAIL_HOST=${{ secrets.MAIL_HOST }}" >> .env
+            echo "MAIL_PORT=${{ secrets.MAIL_PORT }}" >> .env
+            echo "MAIL_USERNAME=${{ secrets.MAIL_USERNAME }}" >> .env
             echo "RESEND_API_KEY=${{ secrets.RESEND_API_KEY }}" >> .env
             
             echo ${{ secrets.GITHUB_TOKEN }} | docker login ghcr.io -u ${{ github.actor }} --password-stdin
