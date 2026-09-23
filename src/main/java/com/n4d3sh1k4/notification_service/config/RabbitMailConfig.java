@@ -1,8 +1,9 @@
 package com.n4d3sh1k4.notification_service.config;
 
 import com.n4d3sh1k4.notification_service.dto.AccountLockedMessage;
+import com.n4d3sh1k4.notification_service.dto.LoginMessage;
+import com.n4d3sh1k4.notification_service.dto.NotificationEmailMessage;
 import com.n4d3sh1k4.notification_service.dto.PasswordResetMessage;
-import com.n4d3sh1k4.notification_service.dto.UserCreatedMessage;
 import org.springframework.amqp.core.Binding;
 import org.springframework.amqp.core.BindingBuilder;
 import org.springframework.amqp.core.Queue;
@@ -15,15 +16,37 @@ import org.springframework.context.annotation.Configuration;
 import java.util.HashMap;
 import java.util.Map;
 
-
 @Configuration
 public class RabbitMailConfig {
 
     public static final String MAIL_QUEUE = "mail-notification-queue";
+    public static final String DLX = "user-exchange.dlx";
+
+    private Queue durableQueue(String name) {
+        Map<String, Object> args = new HashMap<>();
+        args.put("x-dead-letter-exchange", DLX);
+        args.put("x-dead-letter-routing-key", name + ".dlq");
+        return new Queue(name, true, false, false, args);
+    }
 
     @Bean
     public Queue mailQueue() {
-        return new Queue(MAIL_QUEUE, true);
+        return durableQueue(MAIL_QUEUE);
+    }
+
+    @Bean
+    public Queue mailDlq() {
+        return new Queue(MAIL_QUEUE + ".dlq", true);
+    }
+
+    @Bean
+    public TopicExchange dlx() {
+        return new TopicExchange(DLX);
+    }
+
+    @Bean
+    public Binding mailDlqBinding(Queue mailDlq, TopicExchange dlx) {
+        return BindingBuilder.bind(mailDlq).to(dlx).with(MAIL_QUEUE + ".dlq");
     }
 
     @Bean
@@ -47,6 +70,11 @@ public class RabbitMailConfig {
     }
 
     @Bean
+    public Binding loginNotificationBinding(Queue mailQueue, TopicExchange exchange) {
+        return BindingBuilder.bind(mailQueue).to(exchange).with("user.login.email");
+    }
+
+    @Bean
     public JacksonJsonMessageConverter messageConverter() {
         JacksonJsonMessageConverter converter = new JacksonJsonMessageConverter();
 
@@ -56,8 +84,9 @@ public class RabbitMailConfig {
         Map<String, Class<?>> idClassMapping = new HashMap<>();
 
         idClassMapping.put("com.n4d3sh1k4.security_service.dto.event.PasswordResetMessage", PasswordResetMessage.class);
-        idClassMapping.put("com.n4d3sh1k4.security_service.dto.event.NotificationEmailMessage", UserCreatedMessage.class);
+        idClassMapping.put("com.n4d3sh1k4.security_service.dto.event.NotificationEmailMessage", NotificationEmailMessage.class);
         idClassMapping.put("com.n4d3sh1k4.security_service.dto.event.AccountLockedMessage", AccountLockedMessage.class);
+        idClassMapping.put("com.n4d3sh1k4.security_service.dto.event.LoginEvent", LoginMessage.class);
 
         typeMapper.setIdClassMapping(idClassMapping);
         converter.setJavaTypeMapper(typeMapper);
