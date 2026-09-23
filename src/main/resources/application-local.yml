@@ -1,0 +1,74 @@
+spring:
+  application:
+    name: notification-service-reshala
+
+  cloud:
+    config:
+      enabled: false
+
+  rabbitmq:
+    host: localhost
+    port: 5672
+    username: system-user
+    password: systempass
+    virtual-host: system-service
+    listener:
+      simple:
+        default-requeue-rejected: false
+        retry:
+          enabled: true
+          max-attempts: 3
+          initial-interval: 2s
+          multiplier: 2.0
+          max-interval: 10s
+    template:
+      retry:
+        enabled: true
+        initial-interval: 1000ms
+        max-attempts: 3
+
+  mail:
+    host: smtp.resend.com
+    port: 465
+    from: accounts@reshala.n4d3sh1k4.site
+    username: resend
+    password: ${RESEND_API_KEY}
+    properties:
+      mail:
+        smtp:
+          auth: true
+          ssl:
+            enable: true
+          starttls:
+            enable: false
+          connectiontimeout: 10000
+          timeout: 10000
+          writetimeout: 10000
+
+email:
+  support: team@reshala.n4d3sh1k4.site
+
+app:
+  api-url: https://api.reshala.n4d3sh1k4.site
+
+server:
+  port: 8182
+
+eureka:
+  client:
+    service-url:
+      defaultZone: http://eureka-user:zvBGTYdMUJV7mpRs35YA@localhost:8761/eureka/
+    register-with-eureka: true
+    fetch-registry: true
+  instance:
+    prefer-ip-address: true
+    ip-address: 127.0.0.1
+    hostname: localhost
+    instance-id: ${spring.application.name}:${server.port}
+
+logging:
+  logback:
+    rollingpolicy:
+      max-file-size: 10MB
+      max-history: 7
+      total-size-cap: 100MB
