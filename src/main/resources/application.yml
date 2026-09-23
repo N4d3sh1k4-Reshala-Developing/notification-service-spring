@@ -12,6 +12,15 @@ spring:
     username: ${RABBIT_USERNAME}
     password: ${RABBIT_PASSWORD}
     virtual-host: ${RABBIT_VHOST}
+    listener:
+      simple:
+        default-requeue-rejected: false
+        retry:
+          enabled: true
+          max-attempts: 3
+          initial-interval: 2s
+          multiplier: 2.0
+          max-interval: 10s
     template:
       retry:
         enabled: true
@@ -21,6 +30,7 @@ spring:
   mail:
     host: ${MAIL_HOST}
     port: ${MAIL_PORT}
+    from: ${MAIL_FROM:accounts@reshala.n4d3sh1k4.site}
     username: ${MAIL_USERNAME}
     password: ${MAIL_PASSWORD}
     properties:
@@ -31,6 +41,15 @@ spring:
             enable: true
           starttls:
             enable: false
+          connectiontimeout: ${MAIL_CONNECTION_TIMEOUT:10000}
+          timeout: ${MAIL_TIMEOUT:10000}
+          writetimeout: ${MAIL_WRITE_TIMEOUT:10000}
+
+email:
+  support: ${SUPPORT_EMAIL:team@reshala.n4d3sh1k4.site}
+
+app:
+  api-url: ${RESHALA_API_URL:https://api.reshala.n4d3sh1k4.site}
 
 server:
   port: 8182
@@ -46,3 +65,10 @@ eureka:
     ip-address: 127.0.0.1
     hostname: localhost
     instance-id: ${spring.application.name}:${server.port}
+
+logging:
+  logback:
+    rollingpolicy:
+      max-file-size: 10MB
+      max-history: 7
+      total-size-cap: 100MB

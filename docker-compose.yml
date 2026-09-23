@@ -1,3 +1,5 @@
+name: reshala-containers
+
 services:
   notification-service:
     image: ghcr.io/${IMAGE_NAME}:latest
@@ -22,6 +24,11 @@ services:
       - MAIL_USERNAME=${MAIL_USERNAME}
       - MAIL_PASSWORD=${RESEND_API_KEY}
 
+    logging:
+      driver: json-file
+      options:
+        max-size: "10m"
+        max-file: "5"
     networks:
       - reshala-net
     restart: unless-stopped
