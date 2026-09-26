@@ -49,7 +49,19 @@ public class MailListener {
             action.run();
             log.info("{} mail for {} processed successfully", mailType, email);
         } catch (Exception e) {
-            log.error("{} mail for {} failed: {}", mailType, email, e.getMessage(), e);
+            log.error("{} mail for {} failed: {}", mailType, email, describe(e));
         }
+    }
+
+    private String describe(Throwable e) {
+        Throwable root = e;
+        while (root.getCause() != null && root.getCause() != root) {
+            root = root.getCause();
+        }
+        if (root == e) {
+            return e.getClass().getSimpleName() + ": " + e.getMessage();
+        }
+        return e.getClass().getSimpleName() + ": " + e.getMessage()
+                + " <- " + root.getClass().getSimpleName() + ": " + root.getMessage();
     }
 }

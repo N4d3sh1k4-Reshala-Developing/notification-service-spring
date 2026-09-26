@@ -103,7 +103,7 @@ public class EmailService {
             log.info("Email sent to {} (subject: '{}') in {} ms", to, subject, System.currentTimeMillis() - startedAt);
         } catch (MessagingException e) {
             log.error("Failed to send email to {} (subject: '{}') after {} ms: {}",
-                    to, subject, System.currentTimeMillis() - startedAt, e.getMessage(), e);
+                    to, subject, System.currentTimeMillis() - startedAt, e.getMessage());
             throw new RuntimeException("Email sending failed for '" + subject + "' to " + to + ": " + e.getMessage(), e);
         }
     }
