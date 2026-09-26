@@ -21,6 +21,7 @@ services:
       # Mail Configuration
       - MAIL_HOST=${MAIL_HOST}
       - MAIL_PORT=${MAIL_PORT}
+      - MAIL_FROM=${MAIL_FROM}
       - MAIL_USERNAME=${MAIL_USERNAME}
       - MAIL_PASSWORD=${RESEND_API_KEY}
 
